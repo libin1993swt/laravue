@@ -27,8 +27,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function() {
-        Route::prefix('admin-users')->name('admin-users/')->group(static function() {
+    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function () {
+        Route::prefix('admin-users')->name('admin-users/')->group(static function () {
             Route::get('/',                                             'AdminUsersController@index')->name('index');
             Route::get('/create',                                       'AdminUsersController@create')->name('create');
             Route::post('/',                                            'AdminUsersController@store')->name('store');
@@ -43,7 +43,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function() {
+    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function () {
         Route::get('/profile',                                      'ProfileController@editProfile')->name('edit-profile');
         Route::post('/profile',                                     'ProfileController@updateProfile')->name('update-profile');
         Route::get('/password',                                     'ProfileController@editPassword')->name('edit-password');
@@ -54,8 +54,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function() {
-        Route::prefix('posts')->name('posts/')->group(static function() {
+    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function () {
+        Route::prefix('posts')->name('posts/')->group(static function () {
             Route::get('/',                                             'PostsController@index')->name('index');
             Route::get('/create',                                       'PostsController@create')->name('create');
             Route::post('/',                                            'PostsController@store')->name('store');
@@ -63,6 +63,36 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/bulk-destroy',                                'PostsController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{post}',                                      'PostsController@update')->name('update');
             Route::delete('/{post}',                                    'PostsController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function () {
+        Route::prefix('movies')->name('movies/')->group(static function () {
+            Route::get('/',                                             'MoviesController@index')->name('index');
+            Route::get('/create',                                       'MoviesController@create')->name('create');
+            Route::post('/',                                            'MoviesController@store')->name('store');
+            Route::get('/{movie}/edit',                                 'MoviesController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'MoviesController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{movie}',                                     'MoviesController@update')->name('update');
+            Route::delete('/{movie}',                                   'MoviesController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('Admin')->name('admin/')->group(static function () {
+        Route::prefix('players')->name('players/')->group(static function () {
+            Route::get('/', 'PlayersController@index')->name('index');
+            Route::get('/create', 'PlayersController@create')->name('create');
+            Route::post('/', 'PlayersController@store')->name('store');
+            Route::get('/{player}/edit', 'PlayersController@edit')->name('edit');
+            Route::post('/bulk-destroy', 'PlayersController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{player}', 'PlayersController@update')->name('update');
+            Route::delete('/{player}', 'PlayersController@destroy')->name('destroy');
         });
     });
 });
